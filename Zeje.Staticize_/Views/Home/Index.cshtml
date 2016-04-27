@@ -1,0 +1,57 @@
+﻿@using Zeje.Staticize_.Model
+@using Zeje.Staticize_.AppCode
+@model SimplePageObj<BlogPost>
+@{
+    Layout = "~/Views/Shared/_LayoutSCB.cshtml";
+}
+@section header{
+    <header class="intro-header" style="background-image: url('@Url.Content("~/Image/home-bg.jpg")')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>择捷之家</h1>
+                        <hr class="small">
+                        <span class="subheading">心态有多开放,视野就有多开阔</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            @foreach (var row in Model.rows)
+            {
+                <div class="post-preview">
+                    <a href="post.html">
+                        <h2 class="post-title">
+                            @row.title
+                        </h2>
+                        <h3 class="post-subtitle">
+                            @row.summary
+                        </h3>
+                    </a>
+                    <p class="post-meta">Posted by <a href="#">@row.addPerson</a> @row.addTime.ToString("yyyy-MM-dd") </p>
+                </div>
+            }
+            <!-- Pager -->
+            <ul class="pager">
+                @if (Model.prePage)
+                {
+                    <li class="previous">
+                        <a href="@Url.Action("Index", new { pageIndex = Model.prePageIndex, pageSize = Model.pageSize})">← 上一页(Pre Page)</a>
+                    </li>
+                }
+                @if (Model.nextPage)
+                {
+                    <li class="next">
+                        <a href="@Url.Action("Index", new { pageIndex = Model.nextPageIndex, pageSize = Model.pageSize})">下一页(Next Page) →</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

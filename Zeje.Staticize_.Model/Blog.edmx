@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Zeje.BlogModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BlogCategory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="128" />
+          <Property Name="slug" Type="varchar" MaxLength="250" />
+          <Property Name="type" Type="varchar" MaxLength="45" />
+          <Property Name="parentId" Type="int" />
+          <Property Name="countChildNumber" Type="int" />
+          <Property Name="countParentNumber" Type="int" Nullable="false" />
+          <Property Name="state" Type="int" Nullable="false" />
+          <Property Name="publishTime" Type="datetime" />
+          <Property Name="orderId" Type="int" />
+          <Property Name="addPerson" Type="varchar" MaxLength="50" />
+          <Property Name="addTime" Type="datetime" Nullable="false" />
+          <Property Name="updatePerson" Type="varchar" MaxLength="50" />
+          <Property Name="updateTime" Type="datetime" Nullable="false" />
+          <Property Name="deletePerson" Type="varchar" MaxLength="50" />
+          <Property Name="deleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BlogComments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="postId" Type="int" Nullable="false" />
+          <Property Name="sysUserId" Type="int" />
+          <Property Name="content" Type="nvarchar(max)" />
+          <Property Name="parentId" Type="int" />
+          <Property Name="state" Type="int" Nullable="false" />
+          <Property Name="addPerson" Type="varchar" MaxLength="50" />
+          <Property Name="addTime" Type="datetime" Nullable="false" />
+          <Property Name="updatePerson" Type="varchar" MaxLength="50" />
+          <Property Name="updateTime" Type="datetime" Nullable="false" />
+          <Property Name="deletePerson" Type="varchar" MaxLength="50" />
+          <Property Name="deleteTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BlogPost">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryId" Type="int" />
+          <Property Name="title" Type="varchar" MaxLength="128" />
+          <Property Name="content" Type="nvarchar(max)" />
+          <Property Name="postType" Type="int" Nullable="false" />
+          <Property Name="summary" Type="nvarchar(max)" />
+          <Property Name="tagName" Type="nvarchar" MaxLength="256" />
+          <Property Name="commentCount" Type="int" Nullable="false" />
+          <Property Name="viewCount" Type="int" />
+          <Property Name="rssCount" Type="int" />
+          <Property Name="isAllowComment" Type="bit" />
+          <Property Name="isForbidAnonymousComment" Type="bit" Nullable="false" />
+          <Property Name="isVisible" Type="bit" Nullable="false" />
+          <Property Name="onlyRegister" Type="bit" />
+          <Property Name="state" Type="int" Nullable="false" />
+          <Property Name="addPerson" Type="varchar" MaxLength="50" />
+          <Property Name="addTime" Type="datetime" Nullable="false" />
+          <Property Name="updatePerson" Type="varchar" MaxLength="50" />
+          <Property Name="updateTime" Type="datetime" Nullable="false" />
+          <Property Name="deletePerson" Type="varchar" MaxLength="50" />
+          <Property Name="deleteTime" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="ZejeBlogModelStoreContainer">
+          <EntitySet Name="BlogCategory" EntityType="Self.BlogCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BlogComments" EntityType="Self.BlogComments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BlogPost" EntityType="Self.BlogPost" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Zeje.BlogModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BlogCategory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="slug" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="parentId" Type="Int32" />
+          <Property Name="countChildNumber" Type="Int32" />
+          <Property Name="countParentNumber" Type="Int32" Nullable="false" />
+          <Property Name="state" Type="Int32" Nullable="false" />
+          <Property Name="publishTime" Type="DateTime" Precision="3" />
+          <Property Name="orderId" Type="Int32" />
+          <Property Name="addPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="deletePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deleteTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="BlogComments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="postId" Type="Int32" Nullable="false" />
+          <Property Name="sysUserId" Type="Int32" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="parentId" Type="Int32" />
+          <Property Name="state" Type="Int32" Nullable="false" />
+          <Property Name="addPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="deletePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deleteTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="BlogPost">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryId" Type="Int32" />
+          <Property Name="title" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="postType" Type="Int32" Nullable="false" />
+          <Property Name="summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tagName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="commentCount" Type="Int32" Nullable="false" />
+          <Property Name="viewCount" Type="Int32" />
+          <Property Name="rssCount" Type="Int32" />
+          <Property Name="isAllowComment" Type="Boolean" />
+          <Property Name="isForbidAnonymousComment" Type="Boolean" Nullable="false" />
+          <Property Name="isVisible" Type="Boolean" Nullable="false" />
+          <Property Name="onlyRegister" Type="Boolean" />
+          <Property Name="state" Type="Int32" Nullable="false" />
+          <Property Name="addPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="deletePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deleteTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="BlogEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BlogCategory" EntityType="Self.BlogCategory" />
+          <EntitySet Name="BlogComments" EntityType="Self.BlogComments" />
+          <EntitySet Name="BlogPost" EntityType="Self.BlogPost" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ZejeBlogModelStoreContainer" CdmEntityContainer="BlogEntities">
+          <EntitySetMapping Name="BlogCategory">
+            <EntityTypeMapping TypeName="Zeje.BlogModel.BlogCategory">
+              <MappingFragment StoreEntitySet="BlogCategory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="slug" ColumnName="slug" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="parentId" ColumnName="parentId" />
+                <ScalarProperty Name="countChildNumber" ColumnName="countChildNumber" />
+                <ScalarProperty Name="countParentNumber" ColumnName="countParentNumber" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="publishTime" ColumnName="publishTime" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="addPerson" ColumnName="addPerson" />
+                <ScalarProperty Name="addTime" ColumnName="addTime" />
+                <ScalarProperty Name="updatePerson" ColumnName="updatePerson" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+                <ScalarProperty Name="deletePerson" ColumnName="deletePerson" />
+                <ScalarProperty Name="deleteTime" ColumnName="deleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlogComments">
+            <EntityTypeMapping TypeName="Zeje.BlogModel.BlogComments">
+              <MappingFragment StoreEntitySet="BlogComments">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="postId" ColumnName="postId" />
+                <ScalarProperty Name="sysUserId" ColumnName="sysUserId" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="parentId" ColumnName="parentId" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="addPerson" ColumnName="addPerson" />
+                <ScalarProperty Name="addTime" ColumnName="addTime" />
+                <ScalarProperty Name="updatePerson" ColumnName="updatePerson" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+                <ScalarProperty Name="deletePerson" ColumnName="deletePerson" />
+                <ScalarProperty Name="deleteTime" ColumnName="deleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlogPost">
+            <EntityTypeMapping TypeName="Zeje.BlogModel.BlogPost">
+              <MappingFragment StoreEntitySet="BlogPost">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="postType" ColumnName="postType" />
+                <ScalarProperty Name="summary" ColumnName="summary" />
+                <ScalarProperty Name="tagName" ColumnName="tagName" />
+                <ScalarProperty Name="commentCount" ColumnName="commentCount" />
+                <ScalarProperty Name="viewCount" ColumnName="viewCount" />
+                <ScalarProperty Name="rssCount" ColumnName="rssCount" />
+                <ScalarProperty Name="isAllowComment" ColumnName="isAllowComment" />
+                <ScalarProperty Name="isForbidAnonymousComment" ColumnName="isForbidAnonymousComment" />
+                <ScalarProperty Name="isVisible" ColumnName="isVisible" />
+                <ScalarProperty Name="onlyRegister" ColumnName="onlyRegister" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="addPerson" ColumnName="addPerson" />
+                <ScalarProperty Name="addTime" ColumnName="addTime" />
+                <ScalarProperty Name="updatePerson" ColumnName="updatePerson" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+                <ScalarProperty Name="deletePerson" ColumnName="deletePerson" />
+                <ScalarProperty Name="deleteTime" ColumnName="deleteTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
